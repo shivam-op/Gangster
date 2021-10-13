@@ -20,7 +20,7 @@ async def lego(event):
  await event.reply('Creating your logo...wait!')
  try:
     text = event.pattern_match.group(1)
-    img = Image.open('./TGNRobot/resources/blackbg.jpg')
+    img = Image.open('./TGNRobot/resources/blackbg.jpg.jpeg')
     draw = ImageDraw.Draw(img)
     image_widthz, image_heightz = img.size
     pointsize = 500
@@ -40,7 +40,7 @@ async def lego(event):
     if os.path.exists(fname2):
             os.remove(fname2)
  except Exception as e:
-   await event.reply(f'Error Report @godfathersupport, {e}')
+   await event.reply(f'Error Report @electrobot_support, {e}')
 
 
 
