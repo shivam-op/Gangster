@@ -11,8 +11,8 @@ from io import BytesIO
 from requests import get
 from telethon.tl.types import InputMessagesFilterPhotos
 
-from config import OWNER_ID
-from TGBRobot.events import register
+from TGNRobot import OWNER_ID
+from TGNRobot.events import register
 from TGNRobot import telethn
 from PIL import Image, ImageDraw, ImageFont
 
