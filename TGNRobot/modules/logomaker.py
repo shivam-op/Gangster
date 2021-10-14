@@ -71,7 +71,7 @@ async def lego(event):
     draw.text(((image_widthz-w)/2, (image_heightz-h)/2), text, font=font, fill=(255, 255, 255))
     x = (image_widthz-w)/2
     y = ((image_heightz-h)/2+6)
-    draw.text((x, y), text, font=font, fill="white", stroke_width=1, stroke_fill="black")
+    draw.text((x, y), text, font=font, fill="white", stroke_width=5, stroke_fill="blue")
     fname = "Cutiepii.png"
     img.save(fname, "png")
     await telethn.send_file(event.chat_id, file=fname, caption = f"Made by @SkylerX_Bot")         
