@@ -17,29 +17,29 @@ from TGNRobot import telethn
 from PIL import Image, ImageDraw, ImageFont
 
 
-LOGO_LINKS            = ["https://telegra.ph/file/66c94adc82e1fcd5ff1d5.jpg"
-                         "https://telegra.ph/file/05a88eae0a3d43e7bd014.jpg"
-                         "https://telegra.ph/file/9d6c7c817ab2d55886749.jpg"
-                         "https://telegra.ph/file/68ec005e8844fe1b0f1a9.jpg"
-                         "https://telegra.ph/file/661049ee2c2fa39951a04.jpg"
-                         "https://telegra.ph/file/7bf091e53d4711ffde2cf.jpg"
-                         "https://telegra.ph/file/7bcd8d6bf0b7b07e8d4af.jpg"
-                         "https://telegra.ph/file/74bb73a6f5e0a20a91cca.jpg"
-                         "https://telegra.ph/file/1b1ec1309746d2b58a1b9.jpg"
-                         "https://telegra.ph/file/b327dea282a1adf95246b.jpg"
-                         "https://telegra.ph/file/19116ed25c5050f8ffa5f.jpg"
-                         "https://telegra.ph/file/6ea78967e99e991ba15d3.jpg"
-                         "https://telegra.ph/file/84c16ab5710329b1979a3.jpg"
-                         "https://telegra.ph/file/500d90d3549b1b2027273.jpg"
-                         "https://telegra.ph/file/47dde9d76d452cee17499.jpg"
-                         "https://telegra.ph/file/3db29ffcaf85d6cc3ba9a.jpg"
-                         "https://telegra.ph/file/3a6a70fe84badbdc89b02.jpg"
-                         "https://telegra.ph/file/aebefd3f837f46e161f0d.jpg"
-                         "https://telegra.ph/file/62693b6a5a6b2339c2207.jpg"
-                         "https://telegra.ph/file/b672fdee4593ea67bca22.jpg"
-                         "https://telegra.ph/file/9b0f36896be1586e0a807.jpg"
-                         "https://telegra.ph/file/29376c68166d073d843fa.jpg"
-                         "https://telegra.ph/file/97459559987623dcc6dc1.jpg"
+LOGO_LINKS            = ["https://telegra.ph/file/66c94adc82e1fcd5ff1d5.jpg",
+                         "https://telegra.ph/file/05a88eae0a3d43e7bd014.jpg",
+                         "https://telegra.ph/file/9d6c7c817ab2d55886749.jpg",
+                         "https://telegra.ph/file/68ec005e8844fe1b0f1a9.jpg",
+                         "https://telegra.ph/file/661049ee2c2fa39951a04.jpg",
+                         "https://telegra.ph/file/7bf091e53d4711ffde2cf.jpg",
+                         "https://telegra.ph/file/7bcd8d6bf0b7b07e8d4af.jpg",
+                         "https://telegra.ph/file/74bb73a6f5e0a20a91cca.jpg",
+                         "https://telegra.ph/file/1b1ec1309746d2b58a1b9.jpg",
+                         "https://telegra.ph/file/b327dea282a1adf95246b.jpg",
+                         "https://telegra.ph/file/19116ed25c5050f8ffa5f.jpg",
+                         "https://telegra.ph/file/6ea78967e99e991ba15d3.jpg",
+                         "https://telegra.ph/file/84c16ab5710329b1979a3.jpg",
+                         "https://telegra.ph/file/500d90d3549b1b2027273.jpg",
+                         "https://telegra.ph/file/47dde9d76d452cee17499.jpg",
+                         "https://telegra.ph/file/3db29ffcaf85d6cc3ba9a.jpg",
+                         "https://telegra.ph/file/3a6a70fe84badbdc89b02.jpg",
+                         "https://telegra.ph/file/aebefd3f837f46e161f0d.jpg",
+                         "https://telegra.ph/file/62693b6a5a6b2339c2207.jpg",
+                         "https://telegra.ph/file/b672fdee4593ea67bca22.jpg",
+                         "https://telegra.ph/file/9b0f36896be1586e0a807.jpg",
+                         "https://telegra.ph/file/29376c68166d073d843fa.jpg",
+                         "https://telegra.ph/file/97459559987623dcc6dc1.jpg",
                          ]
 
 @register(pattern="^/logo ?(.*)")
