@@ -6,13 +6,21 @@ from telethon.tl.types import ChannelParticipantAdmin
 from telethon.tl.types import ChannelParticipantCreator
 from telethon.tl.functions.channels import GetParticipantRequest
 from telethon.errors import UserNotParticipantError
-from pyrogram import filters
-from TGNRobot.pyrogramee.pluginshelper import admins_only, get_text
-from TGNRobot import pbot
 
 
-@pbot.on_message(filters.command("tagall") & ~filters.edited & ~filters.bot)
-@admins_only
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(name)s - [%(levelname)s] - %(message)s'
+)
+LOGGER = logging.getLogger(__name__)
+
+api_id = int(os.environ.get("APP_ID"))
+api_hash = os.environ.get("API_HASH")
+bot_token = os.environ.get("BOT_TOKEN")
+client = TelegramClient('client', api_id, api_hash).start(bot_token=bot_token)
+spam_chats = []
+
+@client.on(events.NewMessage(pattern="^/mentionall ?(.*)"))
 async def mentionall(event):
   chat_id = event.chat_id
   if event.is_private:
@@ -60,14 +68,14 @@ async def mentionall(event):
     if not chat_id in spam_chats:
       break
     usrnum += 1
-    usrtxt += f"[{usr.first_name} ,](tg://user?id={usr.id}) "
+    usrtxt += f"[{usr.first_name}](tg://user?id={usr.id}) "
     if usrnum == 5:
       if mode == "text_on_cmd":
-        txt = f"{msg}\n\n\n{usrtxt}"
+        txt = f"{usrtxt}\n\n{msg}"
         await client.send_message(chat_id, txt)
       elif mode == "text_on_reply":
         await msg.reply(usrtxt)
-      await asyncio.sleep(1)
+      await asyncio.sleep(2)
       usrnum = 0
       usrtxt = ''
   try:
@@ -75,8 +83,7 @@ async def mentionall(event):
   except:
     pass
 
-@pbot.on_message(filters.command("cancel") & ~filters.edited & ~filters.bot)
-@admins_only
+@client.on(events.NewMessage(pattern="^/cancel$"))
 async def cancel_spam(event):
   if not event.chat_id in spam_chats:
     return await event.respond('__There is no proccess on going...__')
@@ -85,11 +92,7 @@ async def cancel_spam(event):
       spam_chats.remove(event.chat_id)
     except:
       pass
-    return await event.reply("𝚂𝚝𝚘𝚙𝚙𝚎𝚍 𝙼𝚎𝚗𝚝𝚒𝚘𝚗𝚒𝚗𝚐...")
+    return await event.respond('__Stopped.__')
 
-
-__mod_name__ = "Tagall"
-__help__ = """
-- /tagall : Tag everyone in a chat
-- /cancel : stop Tag 
-"""
+print(">> BOT STARTED <<")
+client.run_until_disconnected()
