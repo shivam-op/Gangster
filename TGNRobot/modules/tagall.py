@@ -75,7 +75,8 @@ async def mentionall(event):
   except:
     pass
 
-@client.on(events.NewMessage(pattern="^/cancel$"))
+@pbot.on_message(filters.command("cancel") & ~filters.edited & ~filters.bot)
+@admins_only
 async def cancel_spam(event):
   if not event.chat_id in spam_chats:
     return await event.respond('__There is no proccess on going...__')
@@ -90,4 +91,5 @@ async def cancel_spam(event):
 __mod_name__ = "Tagall"
 __help__ = """
 - /tagall : Tag everyone in a chat
+- /cancel : stop Tag 
 """
