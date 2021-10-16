@@ -1,33 +1,85 @@
-# Copyright (C) 2020-2021 by DevsExpo@Github, < https://github.com/DevsExpo >.
-#
-# This file is part of < https://github.com/DevsExpo/FridayUserBot > project,
-# and is released under the "GNU v3.0 License Agreement".
-# Please see < https://github.com/DevsExpo/blob/master/LICENSE >
-#
-# All rights reserved.
 
+import os, logging, asyncio
+from telethon import Button
+from telethon import TelegramClient, events
+from telethon.tl.types import ChannelParticipantAdmin
+from telethon.tl.types import ChannelParticipantCreator
+from telethon.tl.functions.channels import GetParticipantRequest
+from telethon.errors import UserNotParticipantError
 
-from pyrogram import filters
+@client.on(events.NewMessage(pattern="^/tagall ?(.*)"))
+async def mentionall(event):
+  chat_id = event.chat_id
+  if event.is_private:
+    return await event.respond("__This command can be use in groups and channels!__")
+  
+  is_admin = False
+  try:
+    partici_ = await client(GetParticipantRequest(
+      event.chat_id,
+      event.sender_id
+    ))
+  except UserNotParticipantError:
+    is_admin = False
+  else:
+    if (
+      isinstance(
+        partici_.participant,
+        (
+          ChannelParticipantAdmin,
+          ChannelParticipantCreator
+        )
+      )
+    ):
+      is_admin = True
+  if not is_admin:
+    return await event.respond("__Only admins can mention all!__")
+  
+  if event.pattern_match.group(1) and event.is_reply:
+    return await event.respond("__Give me one argument!__")
+  elif event.pattern_match.group(1):
+    mode = "text_on_cmd"
+    msg = event.pattern_match.group(1)
+  elif event.is_reply:
+    mode = "text_on_reply"
+    msg = await event.get_reply_message()
+    if msg == None:
+        return await event.respond("__I can't mention members for older messages! (messages which are sent before I'm added to group)__")
+  else:
+    return await event.respond("__Reply to a message or give me some text to mention others!__")
+  
+  spam_chats.append(chat_id)
+  usrnum = 0
+  usrtxt = ''
+  async for usr in client.iter_participants(chat_id):
+    if not chat_id in spam_chats:
+      break
+    usrnum += 1
+    usrtxt += f"[{usr.first_name} ,](tg://user?id={usr.id}) "
+    if usrnum == 5:
+      if mode == "text_on_cmd":
+        txt = f"{msg}\n\n\n{usrtxt}"
+        await client.send_message(chat_id, txt)
+      elif mode == "text_on_reply":
+        await msg.reply(usrtxt)
+      await asyncio.sleep(1)
+      usrnum = 0
+      usrtxt = ''
+  try:
+    spam_chats.remove(chat_id)
+  except:
+    pass
 
-from TGNRobot.pyrogramee.pluginshelper import admins_only, get_text
-from TGNRobot import pbot
-
-
-@pbot.on_message(filters.command("tagall") & ~filters.edited & ~filters.bot)
-@admins_only
-async def tagall(client, message):
-    await message.reply("`Processing.....`")
-    sh = get_text(message)
-    if not sh:
-        sh = "Hi!"
-    mentions = ""
-    async for member in client.iter_chat_members(message.chat.id):
-        mentions += member.user.mention + " "
-    n = 4096
-    kk = [mentions[i : i + n] for i in range(0, len(mentions), n)]
-    for i in kk:
-        j = f"<b>{sh}</b> \n{i}"
-        await client.send_message(message.chat.id, j, parse_mode="html")
+@client.on(events.NewMessage(pattern="^/cancel$"))
+async def cancel_spam(event):
+  if not event.chat_id in spam_chats:
+    return await event.respond('__There is no proccess on going...__')
+  else:
+    try:
+      spam_chats.remove(event.chat_id)
+    except:
+      pass
+    return await event.reply("𝚂𝚝𝚘𝚙𝚙𝚎𝚍 𝙼𝚎𝚗𝚝𝚒𝚘𝚗𝚒𝚗𝚐...")
 
 
 __mod_name__ = "Tagall"
