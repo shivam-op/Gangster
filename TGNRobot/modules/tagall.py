@@ -6,8 +6,13 @@ from telethon.tl.types import ChannelParticipantAdmin
 from telethon.tl.types import ChannelParticipantCreator
 from telethon.tl.functions.channels import GetParticipantRequest
 from telethon.errors import UserNotParticipantError
+from pyrogram import filters
+from TGNRobot.pyrogramee.pluginshelper import admins_only, get_text
+from TGNRobot import pbot
 
-@register(pattern="^/tagall ?(.*)")
+
+@pbot.on_message(filters.command("tagall") & ~filters.edited & ~filters.bot)
+@admins_only
 async def mentionall(event):
   chat_id = event.chat_id
   if event.is_private:
