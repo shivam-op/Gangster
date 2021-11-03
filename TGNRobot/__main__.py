@@ -75,7 +75,7 @@ def get_readable_time(seconds: int) -> str:
 
 PM_START_TEXT = """
 
-Hey there! My name is *Gangster* ✨.I can manage your group with lots of useful features, feel free to add me to your group. hit /help
+Hey there! My name is *Gangster* ✨.I can manage your group with lots of useful features, feel free to add me to your group. hit /help to know my commands
  [❤](https://telegra.ph/file/94b845df14ce1767675c7.jpg)
 """
 
@@ -85,7 +85,7 @@ buttons = [
             text="❓ Help and commands", callback_data="help_back"),
     ],
     [
-        InlineKeyboardButton(text="WINZO GOLD🎉", url=f"https://t.me/WINZOGOLD_DISCUSS"),
+        InlineKeyboardButton(text="Winzo Gold🎉", url=f"https://t.me/WINZOGOLD_DISCUSS"),
         InlineKeyboardButton(
             text="Developer 🙋‍♂ ", url=f"https://t.me/ITZ_GANGSTER"
         ),
