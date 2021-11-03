@@ -76,7 +76,7 @@ def get_readable_time(seconds: int) -> str:
 PM_START_TEXT = """
 
 Hey there! My name is *Gangster* ✨.I can manage your group with lots of useful features, feel free to add me to your group. hit /help
- [❤](https://telegra.ph/file/244e02d20161cf9dabfe3.png)
+ [❤](https://telegra.ph/file/94b845df14ce1767675c7.jpg)
 """
 
 buttons = [
@@ -85,9 +85,9 @@ buttons = [
             text="❓ Help and commands", callback_data="help_back"),
     ],
     [
-        InlineKeyboardButton(text="Chatting zone 🎉", url=f"https://t.me/friends_forever_143"),
+        InlineKeyboardButton(text="WINZO GOLD🎉", url=f"https://t.me/WINZOGOLD_DISCUSS"),
         InlineKeyboardButton(
-            text="Developer 🙋‍♂ ", url=f"https://t.me/SHIVAM9412"
+            text="Developer 🙋‍♂ ", url=f"https://t.me/ITZ_GANGSTER"
         ),
     ],
     [
@@ -97,16 +97,16 @@ buttons = [
         ),
     ],
     [
-        InlineKeyboardButton(text="➕ Add to your group ➕", url="t.me/skylerx_bot?startgroup=true"),
+        InlineKeyboardButton(text="➕ Add to your group ➕", url="t.me/GANGSTER_Xbot?startgroup=true"),
     ],
 ]
 
 
 HELP_STRINGS = """
 `you can choose any button from below..`
-You can also ask in support [❤️](https://telegra.ph/file/244e02d20161cf9dabfe3.png)"""
+You can also ask in support [❤️](https://telegra.ph/file/94b845df14ce1767675c7.jpg)"""
 
-START_IMG = "https://telegra.ph/file/244e02d20161cf9dabfe3.png"
+START_IMG = "https://telegra.ph/file/94b845df14ce1767675c7.jpg"
 
 DONATE_STRING = """Heya, glad to hear you want to donate!
  You can support the project [Lucifer](t.me/detctective_de) \
